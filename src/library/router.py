@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 
 from src.library import service
-from src.library.schema import BookChange, BookCreate, BookUpdate
 from src.library.exceptions import BookNotFound
+from src.library.schema import BookChange, BookCreate, BookUpdate
 
 router = APIRouter()
 
@@ -31,6 +31,7 @@ def remove_books_per_id(book_id: int):
     """
     try:
         service.remove_books_per_id(book_id)
+
     except BookNotFound:
         return {"message": "Book not found"}
 
@@ -45,21 +46,21 @@ def update_books_per_id(book_id: int, book_update: BookUpdate):
         return {"message": "Book not found"}
 
 @router.patch("/books/{book_id}")
-def change_books_per_id(book_id: int, book_change: BookChange):
+def patch_books_per_id(book_id: int, book_change: BookChange):
     """
     Change the details of a book based on its ID.
     """
     try:
-        service.change_books_per_id(book_id, book_change)
+        service.patch_books_per_id(book_id, book_change)
     except BookNotFound:
         return {"message": "Book not found"}
 
 @router.post("/books/{book_id}")
-def add_books(book_id: int, book_update: BookCreate):
+def add_books(book_id: int, book_create: BookCreate):
     """
     Add a new book to the library
     """
     try:
-        service.add_books(book_id, book_update)
+        service.add_books(book_id, book_create)
     except BookNotFound:
         return {"message": "Book added successfully"}

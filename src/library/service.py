@@ -75,7 +75,7 @@ def update_books_per_id(book_id: int, book_update: BookUpdate):
             return {"message": "Book updated successfully"}
     raise BookNotFound
 
-def change_books_per_id(book_id: int, book_change: BookChange):
+def patch_books_per_id(book_id: int, book_change: BookChange):
     """
     Change some detail of the book with the provided ID.
     """
