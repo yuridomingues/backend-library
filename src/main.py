@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from src.database import create_tables
+from src.models import create_tables
 from src.library.router import router
 
 def create_app():

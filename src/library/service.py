@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
-from src.database import SessionLocal, Book
+from src.database import SessionLocal
+from src.models import Book
 from src.library.exceptions import BookNotFound
 from src.library.schema import BookChange, BookCreate, BookUpdate
 
@@ -76,12 +77,8 @@ def add_books(book_id: int, book_create: BookCreate):
     """
     with SessionLocal() as db:
         # If the ID is not auto-increment, we need to check if it already exists
-        book_exists = db.query(Book).filter(Book.id == book_id).first()
-        if book_exists:
-            return {"message": "Book ID already exists"}
 
         new_book = Book(
-            id=book_id,
             title=book_create.title,
             author=book_create.author,
             genre=book_create.genre
