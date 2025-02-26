@@ -1,7 +1,12 @@
 from fastapi import FastAPI
-
+from src.database import create_tables
 from src.library.router import router
 
-app = FastAPI()
+def create_app():
+    create_tables()
 
-app.include_router(router)
+    app = FastAPI()
+    app.include_router(router)
+    return app
+
+app = create_app()

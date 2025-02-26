@@ -19,7 +19,7 @@ def get_books_per_id(book_id: int):
     Retrieves a book by its ID.
     """
     try:
-        service.get_book_by_id(book_id)
+        return service.get_book_by_id(book_id)
 
     except BookNotFound:
         return {"message": "Book not found"}
